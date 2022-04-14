@@ -28,6 +28,7 @@ requirements = [
     "Faker==1.0.1",
     "feedparser==5.2.1",
     "Flask",
+    "flask-oauthlib",
     "Flask-Assets==0.12",
     "Flask-Babel>=0.9",
     "Flask-Cors>=3.0.2",
