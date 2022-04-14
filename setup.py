@@ -135,8 +135,8 @@ requirements = [
     "webassets==0.12.1",
     "Werkzeug==0.15.5",
     "wrapt==1.10.11",
-    "WTForms>=1.0.5",
-    "WTForms-Components>=0.10.3",
+    "WTForms==2.3.3",
+    "WTForms-Components==0.10.4",
     "yacryptopan==1.0.0",
     "email_validator==1.1.1"
 ]
