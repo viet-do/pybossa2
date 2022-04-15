@@ -31,9 +31,9 @@ log
 *.sql
 dat/GeoIP.dat
 *.ini
-pybossa/themes/pybossa-default-theme/
+## pybossa/themes/pybossa-default-theme/
 dist/*
-pybossa/themes/crowdcrafting-theme/
+## pybossa/themes/crowdcrafting-theme/
 pybossa/translations
 pybossa/plugins/
 !pybossa/plugins/__init__.py
@@ -42,7 +42,7 @@ cover/*
 flask-email/*
 coverage.xml
 htmlcov/*
-pybossa/themes/*
+## pybossa/themes/*
 .vscode/
 *.bak
 *.orig
