@@ -106,53 +106,17 @@ class TaskRepository(Repository):
         query_args, _, _, _ = self.generate_query_from_keywords(TaskRun, **filters)
         return self.db.session.query(TaskRun).filter(*query_args).count()
 
-    # Get number of unskipped taskruns
-    def count_task_runs_unskip(self, userid, projectid):
-        sql = text('''
-                   SELECT count(distinct task_id) from task_run WHERE info <> '"skip"' And user_id=:user_id And project_id=:project_id;
-                   ''')
-        return self.db.session.execute(sql, dict(user_id=userid, project_id=projectid)).scalar()
-
-    # Get number of all distinct taskruns
-    def count_task_runs_all(self, userid, projectid):
-        sql = text('''
-                   SELECT count(distinct task_id) from task_run WHERE user_id=:user_id And project_id=:project_id;
-                   ''')
-        return self.db.session.execute(sql, dict(user_id=userid, project_id=projectid)).scalar()
-
-    # Get list of all skipped tasks #####
-    def get_skipped_tasks(self, userid, projectid):
-        sql = text('''
-               SELECT distinct task_id, task.info
-               FROM task_run INNER JOIN task ON task_run.task_id = task.id
-               WHERE user_id=:user_id And task_run.project_id=:project_id And task_run.info = '"skip"';
-               ''')
-        tasks_draft = []
-        results = self.db.session.execute(sql, dict(user_id=userid, project_id=projectid))
-        for row in results:
-            project = dict(row)
-            # project['n_tasks'] = n_tasks(row.id)
-            tasks_draft.append(project)
-        return tasks_draft
-
-    def delete_skipped_tasks(self, userid, projectid):
-        sql = text('''
-                   Delete from task_run WHERE info = '"skip"' And user_id=:user_id And project_id=:project_id;
-                   ''')
-        self.db.session.execute(sql, dict(user_id=userid, project_id=projectid))
-        self.db.session.commit()
-        cached_projects.clean_project(projectid)
+    def count_task_runs_sql(self, user_id, project_id):
+	# sql = text(''' DELETE FROM task WHERE task.project_id=:project_id''')
+	# self.db.session.execute(sql, dict(project_id=project_id))
+	# sql = ''
+        return project_id
 
 
     # Methods for saving, deleting and updating both Task and TaskRun objects
     def save(self, element):
         self._validate_can_be('saved', element)
         try:
-            if type(element) is TaskRun:
-                sql = text('''Delete from task_run WHERE info = '"skip"' And user_id=:user_id And project_id=:project_id And task_id=:task_id;''')
-                self.db.session.execute(sql, dict(user_id=element.user_id, project_id=element.project_id, task_id=element.task_id))
-                self.db.session.commit()
-        
             self.db.session.add(element)
             self.db.session.commit()
             cached_projects.clean_project(element.project_id)

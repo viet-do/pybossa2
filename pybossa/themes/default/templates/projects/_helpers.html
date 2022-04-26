@@ -205,7 +205,7 @@
     <a href="{{url_for('project.tasks', short_name=project.short_name)}}" class="btn btn-primary btn-contribute pull-right">{{ _('Done! View results') }}</a>
     {% endif %}
     {% if project['contrib_button'] == 'can_contribute' %}
-	</div></div><div><div>
+	</div></div><div><div style='color:#000000;'>
 	<h2>Simplify COVID-19 terms. </h2>
 	<p>Please simplify as many COVID-19 terms as you can.</p>
 	<p>Think about how:</p>
@@ -218,7 +218,6 @@
 			<li>"people with COVID-19" not "confirmed cases"</li>
 			<li>"stay safe at home" not "quarantine"</li>
 	</ul>
-
 	<p style="text-align:center"><a href="{{ url_for('project.presenter', short_name=project.short_name)}}" class="btn btn-primary btn-contribute ">{{ _('Get Started!') }}</a></p>
     {% endif %}
     {% if project['contrib_button'] == 'cannot_contribute' %}
@@ -258,7 +257,7 @@
                        <div class="post-pic" style="background: rgb(0, 151, 167) url({{render_url_thumbnail(f, upload_method)}}) no-repeat center top; background-size: cover;"></div>
                        <div class="caption">
                            <h3>{{f.name}}</h3>
-                           <p>{{f.description}}</p>
+                           <p></p>
                            {% if featured %}
                             {% if f.featured %}
                             <p class="readmore">
@@ -272,7 +271,7 @@
                             </p>
                             {% endif %}
                            {% else %}
-                           <p class="readmore"><a href="{{ url_for('project.details', short_name=f.short_name)}}">{{_(readmore_text or 'More info')}}</a></p>
+                           <p class="readmore"><a href="{{ url_for('project.details', short_name=f.short_name)}}">Start</a></p>
                            {% endif %}
                        </div>
                    </div>
@@ -301,7 +300,7 @@
     {% if upload_method == 'rackspace'%}
     <img id="{{id}}" class="{{class}}" width="{{width}}" src="{{ url_for('rackspace', filename=project.info.thumbnail, container=project.info.container)}}" style="{{style}}" onError="this.onerror=null;this.src='{{url_for('static', filename='img/placeholder.project.png')}}';">
     {% else %}
-    <img id="{{id}}"  class="{{class}}" width="{{width}}" src="{{ url_for('uploads.uploaded_file', filename=(project.info.container + '/' + project.info.thumbnail))}}" style="{{style}}" onError="this.onerror=null;this.src='{{url_for('static', filename='img/placeholder.project.png')}}';" >
+    <img id="{{id}}"  class="{{class}}" width="100%" src="{{ url_for('uploads.uploaded_file', filename=(project.info.container + '/' + project.info.thumbnail))}}" style="{{style}}" onError="this.onerror=null;this.src='{{url_for('static', filename='img/placeholder.project.png')}}';" >
     {% endif %}
 {% elif project.info.thumbnail %}
     <img id="{{id}}" class="{{class}}" width="{{width}}" src="{{project.info.thumbnail}}" style="{{style}}" onError="this.onerror=null;this.src='{{url_for('static', filename='img/placeholder.project.png')}}';">
