@@ -8,7 +8,7 @@ _ga.html
 _gcs.html
 _gcs_form.html
 static/.webassets-cache/*
-static/css/gen/*
-static/js/gen/*
+## static/css/gen/*
+## static/js/gen/*
 *.sublime-*
 static/src/node_modules/*
