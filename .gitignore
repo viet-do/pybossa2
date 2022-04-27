@@ -41,7 +41,7 @@ test/test_cache.py
 cover/*
 coverage.xml
 htmlcov/*
-pybossa/themes/*
+## pybossa/themes/*
 .vscode/
 *.bak
 *.orig
