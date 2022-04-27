@@ -31,30 +31,25 @@ log
 *.sql
 dat/GeoIP.dat
 *.ini
-## pybossa/themes/pybossa-default-theme/
+pybossa/themes/pybossa-default-theme/
 dist/*
-## pybossa/themes/crowdcrafting-theme/
+pybossa/themes/crowdcrafting-theme/
 pybossa/translations
-## pybossa/plugins/
-## !pybossa/plugins/__init__.py
+pybossa/plugins/
+!pybossa/plugins/__init__.py
 test/test_cache.py
 cover/*
-flask-email/*
 coverage.xml
 htmlcov/*
-## pybossa/themes/*
+pybossa/themes/*
 .vscode/
 *.bak
 *.orig
 tags
-
 ## Virtual environments
 env/
-envcd/
 env3/
 venv/
 venv3
 .venv/
 .venv3/
-__pycache__/
-pybossa.egg-info
