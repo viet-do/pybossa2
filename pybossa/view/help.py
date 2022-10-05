@@ -85,3 +85,13 @@ def privacy():
                     content=cleaned_up_content,
                     title='Privacy Policy')
     return handle_content_type(response)
+
+
+@blueprint.route('/gami')
+def gamification():
+    """Render help/gamification page."""
+    cleaned_up_content = Document(render_template('help/gamification.html')).summary()
+    response = dict(template='help/gamification.html',
+                    content=cleaned_up_content,
+                    title='Help: Gamification')
+    return handle_content_type(response)

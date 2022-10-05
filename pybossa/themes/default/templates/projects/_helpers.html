@@ -218,6 +218,7 @@
 			<li>"people with COVID-19" not "confirmed cases"</li>
 			<li>"stay safe at home" not "quarantine"</li>
 	</ul>
+        <p><a href="/help/gami">Gamification</a></p>
 	<p style="text-align:center"><a href="{{ url_for('project.presenter', short_name=project.short_name)}}" class="btn btn-primary btn-contribute ">{{ _('Get Started!') }}</a></p>
     {% endif %}
     {% if project['contrib_button'] == 'cannot_contribute' %}
@@ -271,7 +272,12 @@
                             </p>
                             {% endif %}
                            {% else %}
-                           <p class="readmore"><a href="{{ url_for('project.details', short_name=f.short_name)}}">Start</a></p>
+				<p style="display:none;"><a href="/help/gami">Gamification</a></p>
+				{% if f.short_name == "MassSentencesSimplification" %}
+		                     <p class="readmore" style="visibility:hidden"><strong>START</strong></p>	
+				{% else %}
+					<p class="readmore"><a href="{{ url_for('project.details', short_name=f.short_name)}}">Start</a></p>
+				{% endif %}
                            {% endif %}
                        </div>
                    </div>
