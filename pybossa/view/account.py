@@ -775,17 +775,24 @@ def reset_password():
     username = userdict.get('user')
     if not username or not userdict.get('password'):
         abort(403)
+
     user = user_repo.get_by_name(username)
     if user.passwd_hash != userdict.get('password'):
         abort(403)
-    form = ChangePasswordForm(request.body)
+    
+    form = ChangePasswordForm(request.body)  #ResetPasswordForm
+    
     if form.validate_on_submit():
         user.set_password(form.new_password.data)
         user_repo.update(user)
         flash(gettext('You reset your password successfully!'), 'success')
         return _sign_in_user(user)
+    
+    #flash(form.new_password.data,'success') ##viet
+        
     if request.method == 'POST' and not form.validate():
         flash(gettext('Please correct the errors'), 'error')
+
     response = dict(template='/account/password_reset.html', form=form)
     return handle_content_type(response)
 

@@ -475,7 +475,9 @@ class ResetPasswordForm(Form):
         new_password = PasswordField(
                         lazy_gettext('New Password'),
                         [validators.Required(err_msg),
-                            validators.EqualTo('confirm', err_msg_2)])
+    			validators.EqualTo('confirm', err_msg_2)])
+
+    #new_password = PasswordField(lazy_gettext('New Password'))
 
     confirm = PasswordField(lazy_gettext('Repeat Password'))
 
