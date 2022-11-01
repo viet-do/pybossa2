@@ -188,7 +188,7 @@
 
 {% macro render_project_title(project, upload_method, subtitle=None) %}
 <h1>
-    {{ render_project_thumbnail(project, upload_method, class="img-thumbnail", style="max-width:60px") }}
+    {{ render_project_thumbnail11(project, upload_method, class="img-thumbnail", style="max-width:60px") }}
     {% if subtitle %}
     <strong>{{ project.name }}</strong>: {{subtitle}}</h1>
     {% else %}
@@ -206,7 +206,7 @@
     {% endif %}
     {% if project['contrib_button'] == 'can_contribute' %}
 	</div></div><div><div style='color:#000000;'>
-	<h2>Simplify COVID-19 terms. </h2>
+	<br>
 	<p>Please simplify as many COVID-19 terms as you can.</p>
 	<p>Think about how:</p>
 	<ul>
@@ -218,7 +218,7 @@
 			<li>"people with COVID-19" not "confirmed cases"</li>
 			<li>"stay safe at home" not "quarantine"</li>
 	</ul>
-        <p><a href="/help/gami">Gamification</a></p>
+       <p><a href="/help/gami">Gamification</a></p>
 	<p style="text-align:center"><a href="{{ url_for('project.presenter', short_name=project.short_name)}}" class="btn btn-primary btn-contribute ">{{ _('Get Started!') }}</a></p>
     {% endif %}
     {% if project['contrib_button'] == 'cannot_contribute' %}
