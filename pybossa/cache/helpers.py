@@ -69,7 +69,7 @@ def check_contributing_state(project, user_id=None, user_ip=None,
     """
     project_id = project['id'] if type(project) == dict else project.id
     published = project['published'] if type(project) == dict else project.published
-    states = ('completed', 'draft', 'publish', 'can_contribute', 'cannot_contribute')
+    states = ('completed', 'draft', 'publish', 'can_contribute', 'cannot_contribute', 'can_start')
     if ps is None:
         ps = session.query(ProjectStats)\
                     .filter_by(project_id=project_id).first()
@@ -79,6 +79,8 @@ def check_contributing_state(project, user_id=None, user_ip=None,
         if has_no_presenter(project) or _has_no_tasks(project_id):
             return states[1]
         return states[2]
+    if ps.overall_progress <= 0:
+        return states[5]
     if n_available_tasks(project_id, user_id=user_id, user_ip=user_ip) > 0:
         return states[3]
     return states[4]

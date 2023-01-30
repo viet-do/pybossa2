@@ -26,6 +26,7 @@ u = User()
 def get_leaderboard(top_users=20, user_id=None, window=0, info=None):
     """Return a list of top_users and if user_id return its position."""
     materialized_view = "users_rank_%s" % info
+    user_id=None  #to remove last line of leaderboard for current user - Viet
     sql = text('''SELECT * from users_rank WHERE rank <= :top_users 
                ORDER BY rank;''')
     if info:
